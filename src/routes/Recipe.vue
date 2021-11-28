@@ -1,3 +1,3 @@
 <template>
-  <router-view />
+  <h1>RECIPE</h1>
 </template>
