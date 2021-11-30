@@ -1,3 +1,13 @@
 <template>
-  <h1>Home</h1>
+  <HeadLine />
 </template>
+
+<script>
+import HeadLine from "@/components/HeadLine.vue";
+
+export default {
+  components: {
+    HeadLine,
+  },
+};
+</script>
