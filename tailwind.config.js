@@ -6,11 +6,19 @@ module.exports = {
       "Noto Sans KR": ["Noto Sans KR", "sans-serif"],
     },
     extend: {
+      width: {
+        input: "600px",
+      },
       height: {
         xl: "700px",
       },
       animation: {
         ping: "ping 1s cubic-bezier(0, 0, 0.2, 1)",
+      },
+      colors: {
+        indigo: {
+          dark: "#3F3D56",
+        },
       },
     },
   },

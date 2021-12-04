@@ -1,7 +1,7 @@
 <template>
   <button
     @click="btnClick()"
-    class="absolute bottom-16 right-16 w-14 h-14 rounded-full bg-indigo-900 text-white flex justify-center items-center"
+    class="w-14 h-14 rounded-full bg-indigo-dark text-white flex justify-center items-center"
   >
     <HeartIcon class="w-8 h-8 text-yellow-500" />
     <HeartIcon

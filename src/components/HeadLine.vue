@@ -7,7 +7,7 @@
         </h1>
         <p>간단하고 쉬운 음식을 만들고 싶으면?</p>
         <p>
-          <span class="text-indigo-900 text-3xl font-bold tracking-tighter"
+          <span class="text-indigo-dark text-3xl font-bold tracking-tighter"
             >쿠키 레시피</span
           >에서 검색하세요!
         </p>
@@ -17,7 +17,7 @@
         alt="쿠키 이미지"
         class="w-96 absolute left-16 bottom-16 pointer-events-none"
       />
-      <HeartBtn />
+      <HeartBtn class="absolute bottom-16 right-16" />
     </div>
   </section>
 </template>
