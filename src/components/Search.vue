@@ -26,7 +26,6 @@
 <script>
 import Title from "@/components/Title";
 import { SearchIcon } from "@heroicons//vue/solid";
-import axios from "axios";
 
 export default {
   components: {
@@ -40,11 +39,9 @@ export default {
   },
   methods: {
     async apply() {
-      const RECIPE_API_KEY = "fee7f81a72a24e28962e";
-      const res = await axios.get(
-        `http://openapi.foodsafetykorea.go.kr/api/${RECIPE_API_KEY}/COOKRCP01/json/1/10/RCP_NM=${this.title}`
-      );
-      console.log(res);
+      this.$store.dispatch("recipe/searchRecipes", {
+        title: this.title,
+      });
     },
   },
 };
