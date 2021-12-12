@@ -1,7 +1,9 @@
 <template>
   <HeadLine />
-  <Search />
-  <RecipeList />
+  <div class="container mx-auto">
+    <Search />
+    <RecipeList />
+  </div>
 </template>
 
 <script>
