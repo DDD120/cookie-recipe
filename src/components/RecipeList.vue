@@ -1,17 +1,30 @@
 <template>
-  <section>
-    <p>{{ total }}</p>
-    <RecipeItem
-      v-for="recipe in recipes"
-      :key="recipe.RCP_SEQ"
-      :recipe="recipe"
-    />
-    <p>{{ lastIndex }}</p>
-    <infinite-scroll
-      @infinite-scroll="infiniteHandler"
-      :message="message"
-      :noResult="noResult"
-    ></infinite-scroll>
+  <section class="flex justify-center">
+    <div class="w-8/12">
+      <div
+        v-if="notice"
+        class="text-center border-gray-200 rounded-xl border-2 p-6 my-20"
+      >
+        <p class="text-gray-400">{{ notice }}</p>
+      </div>
+      <div v-else>
+        <p class="m-4">
+          검색 결과 총
+          <span class="font-bold text-yellow-500">{{ total }}</span
+          >개의 레시피가 검색되었습니다.
+        </p>
+        <RecipeItem
+          v-for="recipe in recipes"
+          :key="recipe.RCP_SEQ"
+          :recipe="recipe"
+        />
+        <infinite-scroll
+          @infinite-scroll="infiniteHandler"
+          :message="message"
+          :noResult="noResult"
+        ></infinite-scroll>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -32,11 +45,11 @@ export default {
     };
   },
   computed: {
-    ...mapState("recipe", ["title", "recipes", "total", "lastIndex"]),
+    ...mapState("recipe", ["title", "recipes", "total", "lastIndex", "notice"]),
   },
   methods: {
     infiniteHandler() {
-      this.noResult = true;
+      this.noResult = false;
       setTimeout(async () => {
         if (this.lastIndex < this.total) {
           this.$store.dispatch("recipe/searchRecipes", {
