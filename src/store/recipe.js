@@ -8,7 +8,6 @@ export default {
     total: null,
     lastIndex: 0,
     notice: "검색된 레시피가 없습니다.",
-    loading: false,
   }),
   getter: {},
   mutations: {

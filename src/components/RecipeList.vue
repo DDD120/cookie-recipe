@@ -1,5 +1,5 @@
 <template>
-  <section class="flex justify-center">
+  <section class="flex justify-center mb-20">
     <div class="w-8/12">
       <div
         v-if="notice"
