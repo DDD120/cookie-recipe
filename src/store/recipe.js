@@ -5,7 +5,7 @@ export default {
   state: () => ({
     title: "",
     recipes: [],
-    total: null,
+    total: 0,
     lastIndex: 0,
     notice: "검색된 레시피가 없습니다.",
   }),
@@ -19,7 +19,7 @@ export default {
     resetRecipes(state) {
       state.title = "";
       state.recipes = [];
-      state.total = null;
+      state.total = 0;
       state.lastIndex = 0;
     },
   },
@@ -41,7 +41,7 @@ export default {
         commit("updateState", {
           title,
           recipes: [...state.recipes, ...row],
-          total: total_count,
+          total: Number(total_count),
           lastIndex: state.lastIndex + row.length,
         });
       } catch (notice) {
@@ -50,16 +50,27 @@ export default {
           notice,
         });
       }
+      console.log(state.lastIndex, state.total);
+    },
+    async searchRecipeWithName(context, payload) {
+      try {
+        const res = await _fetchRecipe(payload);
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
 
 function _fetchRecipe(payload) {
-  const { title, lastIndex } = payload;
+  const { title, lastIndex, name } = payload;
   const RECIPE_API_KEY = "fee7f81a72a24e28962e";
-  const url = `http://openapi.foodsafetykorea.go.kr/api/${RECIPE_API_KEY}/COOKRCP01/json/${lastIndex}/${
-    lastIndex + 10
-  }/RCP_NM=${title}`;
+  const url = name
+    ? `http://openapi.foodsafetykorea.go.kr/api/${RECIPE_API_KEY}/COOKRCP01/json/1/1/RCP_NM='${name}'`
+    : `http://openapi.foodsafetykorea.go.kr/api/${RECIPE_API_KEY}/COOKRCP01/json/${lastIndex}/${
+        lastIndex + 10
+      }/RCP_NM='${title}'`;
 
   return new Promise((resolve, reject) => {
     axios

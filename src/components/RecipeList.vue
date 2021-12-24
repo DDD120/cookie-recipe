@@ -18,30 +18,31 @@
           :key="recipe.RCP_SEQ"
           :recipe="recipe"
         />
-        <infinite-scroll
-          @infinite-scroll="infiniteHandler"
-          :message="message"
-          :noResult="noResult"
-        ></infinite-scroll>
+        <div v-if="loading" class="flex justify-center m-12">
+          <div
+            style="border-top-color: transparent"
+            class="w-12 h-12 border-2 border-yellow-500 border-solid rounded-full animate-spin"
+          ></div>
+        </div>
+        <Observer @triggerIntersected="infiniteHandler" />
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import InfiniteScroll from "infinite-loading-vue3";
 import RecipeItem from "@/components/RecipeItem";
+import Observer from "@/components/Observer.vue";
 import { mapState } from "vuex";
 
 export default {
   components: {
-    InfiniteScroll,
     RecipeItem,
+    Observer,
   },
   data() {
     return {
-      message: "",
-      noResult: true,
+      loading: false,
     };
   },
   computed: {
@@ -49,18 +50,17 @@ export default {
   },
   methods: {
     infiniteHandler() {
-      this.noResult = false;
+      this.loading = true;
       setTimeout(async () => {
         if (this.lastIndex < this.total) {
           this.$store.dispatch("recipe/searchRecipes", {
             title: this.title,
             lastIndex: this.lastIndex + 1,
           });
+        } else {
+          this.loading = false;
         }
-        if (this.lastIndex == this.total) {
-          this.noResult = true;
-        }
-      }, 1000);
+      }, 500);
     },
   },
 };

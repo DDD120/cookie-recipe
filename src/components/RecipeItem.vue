@@ -1,5 +1,6 @@
 <template>
-  <div
+  <router-link
+    :to="`/recipe/${recipe.RCP_NM}`"
     class="flex border-gray-200 rounded-xl border-2 p-6 m-4 cursor-pointer duration-75 hover:shadow-lg hover:border-yellow-500"
   >
     <img
@@ -12,7 +13,7 @@
       <span class="block text-gray-500 mb-6"> {{ recipe.RCP_PAT2 }}</span>
       <p>{{ recipe.RCP_PARTS_DTLS }}</p>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>

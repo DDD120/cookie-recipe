@@ -10,7 +10,7 @@ export default createRouter({
       component: Home,
     },
     {
-      path: "/recipe",
+      path: "/recipe/:name",
       component: Recipe,
     },
   ],
