@@ -9,6 +9,7 @@ export default {
     total: 0,
     lastIndex: 0,
     notice: "검색된 레시피가 없습니다.",
+    loading: false,
   }),
   getters: {
     manualTexts: (state) => {
@@ -36,6 +37,7 @@ export default {
     async searchRecipes({ state, commit }, payload) {
       commit("updateState", {
         notice: "",
+        loading: true,
       });
 
       try {
@@ -58,9 +60,20 @@ export default {
           recipes: [],
           notice,
         });
+      } finally {
+        commit("updateState", {
+          loading: false,
+        });
       }
     },
-    async searchRecipeWithName({ commit }, payload) {
+    async searchRecipeWithName({ state, commit }, payload) {
+      if (state.loading) return;
+
+      commit("updateState", {
+        notice: "",
+        loading: true,
+      });
+
       try {
         const res = await _fetchRecipe(payload);
         const { row } = res.data.COOKRCP01;
@@ -72,6 +85,10 @@ export default {
         commit("updateState", {
           recipe: [],
           notice,
+        });
+      } finally {
+        commit("updateState", {
+          loading: false,
         });
       }
     },

@@ -18,12 +18,7 @@
           :key="recipe.RCP_SEQ"
           :recipe="recipe"
         />
-        <div v-if="loading" class="flex justify-center m-12">
-          <div
-            style="border-top-color: transparent"
-            class="w-12 h-12 border-2 border-yellow-500 border-solid rounded-full animate-spin"
-          ></div>
-        </div>
+        <Loader v-if="loading" />
         <Observer @triggerIntersected="infiniteHandler" />
       </div>
     </div>
@@ -33,32 +28,33 @@
 <script>
 import RecipeItem from "@/components/RecipeItem";
 import Observer from "@/components/Observer.vue";
+import Loader from "@/components/Loader.vue";
 import { mapState } from "vuex";
 
 export default {
   components: {
     RecipeItem,
     Observer,
-  },
-  data() {
-    return {
-      loading: false,
-    };
+    Loader,
   },
   computed: {
-    ...mapState("recipe", ["title", "recipes", "total", "lastIndex", "notice"]),
+    ...mapState("recipe", [
+      "title",
+      "recipes",
+      "total",
+      "lastIndex",
+      "notice",
+      "loading",
+    ]),
   },
   methods: {
     infiniteHandler() {
-      this.loading = true;
       setTimeout(async () => {
         if (this.lastIndex < this.total) {
           this.$store.dispatch("recipe/searchRecipes", {
             title: this.title,
             lastIndex: this.lastIndex + 1,
           });
-        } else {
-          this.loading = false;
         }
       }, 500);
     },

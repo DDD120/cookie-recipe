@@ -24,8 +24,5 @@ export default {
       default: () => ({}),
     },
   },
-  data() {
-    return {};
-  },
 };
 </script>

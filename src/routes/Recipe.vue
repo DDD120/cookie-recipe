@@ -4,17 +4,26 @@
   >
     <router-link to="/">COOKIE RECIPE</router-link>
   </header>
-  <div class="my-20">
-    <Title title="Recipe" />
+  <div v-if="loading">
+    <Loader fixed />
+    <div class="flex justify-center h-detail my-20">
+      <div class="bg-gray-300 p-8 rounded-g w-9/12"></div>
+    </div>
   </div>
-  <RecipeDetail />
-  <Manual />
+  <div v-else>
+    <div class="my-20">
+      <Title title="Recipe" />
+    </div>
+    <RecipeDetail />
+    <Manual />
+  </div>
 </template>
 
 <script>
 import Title from "@/components/Title.vue";
 import RecipeDetail from "@/components/RecipeDetail";
 import Manual from "@/components/Manual";
+import Loader from "@/components/Loader";
 import { mapState } from "vuex";
 
 export default {
@@ -22,6 +31,7 @@ export default {
     Title,
     RecipeDetail,
     Manual,
+    Loader,
   },
   created() {
     this.$store.commit("recipe/resetRecipes");
@@ -30,7 +40,7 @@ export default {
     });
   },
   computed: {
-    ...mapState("recipe", ["recipe"]),
+    ...mapState("recipe", ["recipe", "loading"]),
   },
 };
 </script>

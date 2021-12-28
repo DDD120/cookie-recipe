@@ -4,7 +4,7 @@
       <h1 class="text-4xl my-20 font-bold">요리 과정</h1>
       <div
         v-for="(text, index) in manualTexts"
-        :key="text"
+        :key="index"
         class="flex flex-row gap-8 mb-8 w-full"
       >
         <div class="overflow-hidden shrink flex-grow w-2/5">
