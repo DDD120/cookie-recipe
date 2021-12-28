@@ -17,5 +17,8 @@ export default {
     Search,
     RecipeList,
   },
+  created() {
+    this.$store.commit("recipe/resetRecipes");
+  },
 };
 </script>

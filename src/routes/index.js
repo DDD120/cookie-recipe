@@ -7,10 +7,12 @@ export default createRouter({
   routes: [
     {
       path: "/",
+      name: "Home",
       component: Home,
     },
     {
-      path: "/recipe/:name",
+      path: "/recipe/:rcp_nm",
+      name: "Recipe",
       component: Recipe,
     },
   ],

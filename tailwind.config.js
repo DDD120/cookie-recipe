@@ -10,6 +10,7 @@ module.exports = {
         input: "600px",
       },
       height: {
+        detail: "450px",
         xl: "700px",
       },
       animation: {

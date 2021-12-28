@@ -5,11 +5,19 @@ export default {
   state: () => ({
     title: "",
     recipes: [],
+    recipe: [],
     total: 0,
     lastIndex: 0,
     notice: "검색된 레시피가 없습니다.",
   }),
-  getter: {},
+  getters: {
+    manualTexts: (state) => {
+      return manualObjCreate(state, "manualTexts", "MANUAL");
+    },
+    manualImgs: (state) => {
+      return manualObjCreate(state, "manualImgs", "MANUAL_IMG");
+    },
+  },
   mutations: {
     updateState(state, payload) {
       Object.keys(payload).forEach((key) => {
@@ -19,8 +27,9 @@ export default {
     resetRecipes(state) {
       state.title = "";
       state.recipes = [];
-      state.total = 0;
+      (state.recipe = []), (state.total = 0);
       state.lastIndex = 0;
+      state.notice = "검색된 레시피가 없습니다.";
     },
   },
   actions: {
@@ -50,27 +59,50 @@ export default {
           notice,
         });
       }
-      console.log(state.lastIndex, state.total);
     },
-    async searchRecipeWithName(context, payload) {
+    async searchRecipeWithName({ commit }, payload) {
       try {
         const res = await _fetchRecipe(payload);
-        console.log(res.data);
-      } catch (error) {
-        console.log(error);
+        const { row } = res.data.COOKRCP01;
+
+        commit("updateState", {
+          recipe: row[0],
+        });
+      } catch (notice) {
+        commit("updateState", {
+          recipe: [],
+          notice,
+        });
       }
     },
   },
 };
 
+function manualObjCreate(state, arrName, keyName) {
+  const recipeObj = state.recipe;
+  const keys = Object.keys(recipeObj);
+  const regExp = new RegExp(`${keyName}[0-2][0-9]`);
+  arrName = keys
+    .filter((k) => regExp.test(k))
+    .sort()
+    .reduce((v, k) => Object.assign(v, { [k]: recipeObj[k] }), {});
+
+  for (let key in arrName) {
+    const val = arrName[key];
+    if (val === "") delete arrName[key];
+  }
+  const manualObj = Object.values(arrName);
+  return manualObj;
+}
+
 function _fetchRecipe(payload) {
-  const { title, lastIndex, name } = payload;
+  const { title, lastIndex, rcp_nm } = payload;
   const RECIPE_API_KEY = "fee7f81a72a24e28962e";
-  const url = name
-    ? `http://openapi.foodsafetykorea.go.kr/api/${RECIPE_API_KEY}/COOKRCP01/json/1/1/RCP_NM='${name}'`
+  const url = rcp_nm
+    ? `http://openapi.foodsafetykorea.go.kr/api/${RECIPE_API_KEY}/COOKRCP01/json/1/1/RCP_NM="${rcp_nm}"`
     : `http://openapi.foodsafetykorea.go.kr/api/${RECIPE_API_KEY}/COOKRCP01/json/${lastIndex}/${
         lastIndex + 10
-      }/RCP_NM='${title}'`;
+      }/RCP_NM="${title}"`;
 
   return new Promise((resolve, reject) => {
     axios

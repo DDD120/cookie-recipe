@@ -1,11 +1,11 @@
 <template>
   <router-link
-    :to="`/recipe/${recipe.RCP_NM}`"
+    :to="{ name: 'Recipe', params: { rcp_nm: recipe.RCP_NM } }"
     class="flex border-gray-200 rounded-xl border-2 p-6 m-4 cursor-pointer duration-75 hover:shadow-lg hover:border-yellow-500"
   >
     <img
       :src="recipe.ATT_FILE_NO_MAIN"
-      alt=""
+      :alt="recipe.RCP_NM"
       class="w-48 h-48 mr-6 object-cover rounded-xl"
     />
     <div>
@@ -23,6 +23,9 @@ export default {
       type: Object,
       default: () => ({}),
     },
+  },
+  data() {
+    return {};
   },
 };
 </script>
