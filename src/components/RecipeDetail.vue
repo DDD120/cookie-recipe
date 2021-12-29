@@ -8,6 +8,7 @@
           :src="recipe.ATT_FILE_NO_MK"
           :alt="recipe.RCP_NM"
           class="mr-6 w-full h-full object-cover"
+          @error="noImgPlace"
         />
       </div>
       <div class="w-3/5 flex flex-col justify-around">
@@ -66,6 +67,11 @@ export default {
   },
   computed: {
     ...mapState("recipe", ["recipe"]),
+  },
+  methods: {
+    noImgrePlace(e) {
+      e.target.src = "@/assets/images/no_manual_img.jpg";
+    },
   },
 };
 </script>

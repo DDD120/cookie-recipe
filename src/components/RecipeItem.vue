@@ -7,6 +7,7 @@
       :src="recipe.ATT_FILE_NO_MAIN"
       :alt="recipe.RCP_NM"
       class="w-48 h-48 mr-6 object-cover rounded-xl"
+      @error="noImgreplace"
     />
     <div>
       <h2 class="text-2xl mb-4">{{ recipe.RCP_NM }}</h2>
@@ -22,6 +23,11 @@ export default {
     recipe: {
       type: Object,
       default: () => ({}),
+    },
+  },
+  methods: {
+    noImgreplace(e) {
+      e.target.src = "@/assets/images/no_manual_img.jpg";
     },
   },
 };

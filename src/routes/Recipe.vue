@@ -2,7 +2,7 @@
   <header
     class="bg-yellow-500 flex justify-center text-xl text-white font-bold p-4"
   >
-    <router-link to="/">COOKIE RECIPE</router-link>
+    <router-link to="/" @click="reset">COOKIE RECIPE</router-link>
   </header>
   <div v-if="loading">
     <Loader fixed />
@@ -34,13 +34,17 @@ export default {
     Loader,
   },
   created() {
-    this.$store.commit("recipe/resetRecipes");
     this.$store.dispatch("recipe/searchRecipeWithName", {
       rcp_nm: this.$route.params.rcp_nm,
     });
   },
   computed: {
     ...mapState("recipe", ["recipe", "loading"]),
+  },
+  methods: {
+    reset() {
+      this.$store.commit("recipe/resetRecipes");
+    },
   },
 };
 </script>
