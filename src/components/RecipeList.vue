@@ -14,7 +14,7 @@
           >개의 레시피가 검색되었습니다.
         </p>
         <RecipeItem
-          v-for="recipe in recipes"
+          v-for="recipe in viewRecipes"
           :key="recipe.RCP_SEQ"
           :recipe="recipe"
         />
@@ -40,7 +40,7 @@ export default {
   computed: {
     ...mapState("recipe", [
       "title",
-      "recipes",
+      "viewRecipes",
       "total",
       "lastIndex",
       "notice",
@@ -52,7 +52,6 @@ export default {
       setTimeout(async () => {
         if (this.lastIndex < this.total) {
           this.$store.dispatch("recipe/searchRecipes", {
-            title: this.title,
             lastIndex: this.lastIndex + 1,
           });
         }

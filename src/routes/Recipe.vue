@@ -1,6 +1,9 @@
 <template>
   <Header />
-  <div v-if="loading">
+  <div v-if="notice">
+    <NotFound />
+  </div>
+  <div v-else-if="loading">
     <Loader fixed />
     <div class="flex justify-center h-detail my-20">
       <div class="bg-gray-300 p-8 rounded-g w-9/12"></div>
@@ -21,6 +24,7 @@ import Title from "@/components/Title.vue";
 import RecipeDetail from "@/components/RecipeDetail";
 import Manual from "@/components/Manual";
 import Loader from "@/components/Loader";
+import NotFound from "@/components/NotFound";
 import { mapState } from "vuex";
 
 export default {
@@ -30,6 +34,7 @@ export default {
     RecipeDetail,
     Manual,
     Loader,
+    NotFound,
   },
   created() {
     this.$store.dispatch("recipe/searchRecipeWithName", {
@@ -37,7 +42,7 @@ export default {
     });
   },
   computed: {
-    ...mapState("recipe", ["recipe", "loading"]),
+    ...mapState("recipe", ["recipe", "loading", "notice"]),
   },
   methods: {
     reset() {

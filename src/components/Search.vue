@@ -40,7 +40,6 @@ export default {
       this.$store.commit("recipe/resetRecipes");
       this.$store.dispatch("recipe/searchRecipes", {
         title: this.title,
-        lastIndex: 0,
       });
     },
   },

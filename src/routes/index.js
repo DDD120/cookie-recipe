@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "./Home";
 import Recipe from "./Recipe";
-import NotFound from "./NotFound";
+import PageNotFound from "./PageNotFound";
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -21,8 +21,8 @@ export default createRouter({
     },
     {
       path: "/:notFound(.*)",
-      name: "NotFound",
-      component: NotFound,
+      name: "PageNotFound",
+      component: PageNotFound,
     },
   ],
 });
