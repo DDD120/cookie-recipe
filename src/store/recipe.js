@@ -55,10 +55,10 @@ export default {
           total: Number(total_count),
           lastIndex: state.lastIndex + row.length,
         });
-      } catch (notice) {
+      } catch (error) {
         commit("updateState", {
           recipes: [],
-          notice,
+          notice: "레시피를 찾을 수 없습니다.",
         });
       } finally {
         commit("updateState", {

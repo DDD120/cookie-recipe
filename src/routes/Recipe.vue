@@ -1,9 +1,5 @@
 <template>
-  <header
-    class="bg-yellow-500 flex justify-center text-xl text-white font-bold p-4"
-  >
-    <router-link to="/" @click="reset">COOKIE RECIPE</router-link>
-  </header>
+  <Header />
   <div v-if="loading">
     <Loader fixed />
     <div class="flex justify-center h-detail my-20">
@@ -20,6 +16,7 @@
 </template>
 
 <script>
+import Header from "@/components/Header.vue";
 import Title from "@/components/Title.vue";
 import RecipeDetail from "@/components/RecipeDetail";
 import Manual from "@/components/Manual";
@@ -28,6 +25,7 @@ import { mapState } from "vuex";
 
 export default {
   components: {
+    Header,
     Title,
     RecipeDetail,
     Manual,
