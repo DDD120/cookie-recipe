@@ -1,6 +1,6 @@
 <template>
   <HeadLine />
-  <div class="container mx-auto">
+  <div class="md:container mx-auto">
     <Search />
     <RecipeList />
   </div>

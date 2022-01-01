@@ -5,9 +5,11 @@
       <div
         v-for="(text, index) in manualTexts"
         :key="index"
-        class="flex flex-row gap-8 mb-8 w-full"
+        class="flex flex-row gap-8 mb-8 w-full sm:flex-col"
       >
-        <div class="bg-gray-200 h-72 overflow-hidden shrink flex-grow w-2/5">
+        <div
+          class="bg-gray-200 h-72 overflow-hidden shrink flex-grow w-2/5 sm:w-full"
+        >
           <img
             v-if="manualImgs[index]"
             :src="manualImgs[index]"
@@ -21,7 +23,7 @@
             class="w-full h-full object-cover"
           />
         </div>
-        <p class="flex-grow w-3/5 text-left">{{ text }}</p>
+        <p class="flex-grow w-3/5 text-left sm:w-full">{{ text }}</p>
       </div>
     </div>
   </section>

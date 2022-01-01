@@ -1,9 +1,9 @@
 <template>
   <router-link
     :to="{ name: 'Recipe', params: { rcp_nm: recipe.RCP_NM } }"
-    class="flex border-gray-200 rounded-xl border-2 p-6 m-4 cursor-pointer duration-75 hover:shadow-lg hover:border-yellow-500"
+    class="flex border-gray-200 rounded-xl border-2 p-6 m-4 cursor-pointer duration-75 hover:shadow-lg hover:border-yellow-500 sm:flex-col"
   >
-    <div class="w-1/4 h-48 mr-6 overflow-hidden">
+    <div class="w-1/4 h-48 mr-6 overflow-hidden sm:w-full sm:mb-8">
       <img
         :src="recipe.ATT_FILE_NO_MAIN"
         :alt="recipe.RCP_NM"

@@ -8,7 +8,7 @@
         <p class="text-gray-400">{{ notice }}</p>
       </div>
       <div v-else>
-        <p class="m-4">
+        <p class="m-4 sm:text-xs">
           검색 결과 총
           <span class="font-bold text-yellow-500">{{ total }}</span
           >개의 레시피가 검색되었습니다.

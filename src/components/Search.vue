@@ -2,7 +2,7 @@
   <section class="mt-20 p-14">
     <Title title="Search" />
     <div
-      class="relative mx-auto mt-14 flex items-center w-input rounded-full focus-within:shadow-lg bg-white overflow-hidden border-indigo-dark border-2"
+      class="relative mx-auto mt-14 flex items-center w-input rounded-full focus-within:shadow-lg bg-white overflow-hidden border-indigo-dark border-2 sm:w-full"
     >
       <input
         v-model="title"

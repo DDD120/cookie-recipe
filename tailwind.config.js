@@ -21,6 +21,9 @@ module.exports = {
           dark: "#3F3D56",
         },
       },
+      screens: {
+        sm: { min: "0px", max: "767px" },
+      },
     },
   },
   variants: {

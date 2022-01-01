@@ -1,9 +1,11 @@
 <template>
-  <section class="flex justify-center h-detail">
+  <section class="flex justify-center h-detail sm:h-auto">
     <div
-      class="inline-flex justify-center border border-gray-800 p-8 rounded-lg w-9/12"
+      class="inline-flex justify-center border border-gray-800 p-8 rounded-lg w-9/12 sm:h-auto sm:block"
     >
-      <div class="mr-8 w-2/5 rounded-xl overflow-hidden">
+      <div
+        class="mr-8 w-2/5 rounded-xl overflow-hidden sm:w-full sm:h-96 sm:mb-4"
+      >
         <img
           :src="recipe.ATT_FILE_NO_MK"
           :alt="recipe.RCP_NM"
@@ -11,7 +13,7 @@
           @error="noImgPlace"
         />
       </div>
-      <div class="w-3/5 flex flex-col justify-around">
+      <div class="w-3/5 flex flex-col justify-around sm:w-full">
         <h1 class="text-4xl mb-4 text-bold">{{ recipe.RCP_NM }}</h1>
         <div>
           <div class="flex mb-4">
@@ -29,7 +31,7 @@
             <p class="p-2">{{ recipe.RCP_PARTS_DTLS }}</p>
           </div>
         </div>
-        <table class="border border-gray-800 border-collapse">
+        <table class="border border-gray-800 border-collapse sm:w-full">
           <caption class="text-left mb-2">
             영양정보
           </caption>
