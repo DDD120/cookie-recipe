@@ -134,19 +134,6 @@ function manualObjCreate(state, arrName, keyName) {
   return manualObj;
 }
 
-function _fetchRecipe(payload) {
-  const { title, rcp_nm } = payload;
-  const RECIPE_API_KEY = "fee7f81a72a24e28962e";
-  const url = rcp_nm
-    ? `http://openapi.foodsafetykorea.go.kr/api/${RECIPE_API_KEY}/COOKRCP01/json/1/1/RCP_NM="${rcp_nm}"`
-    : `http://openapi.foodsafetykorea.go.kr/api/${RECIPE_API_KEY}/COOKRCP01/json/1/300/RCP_NM="${title}"`;
-
-  return new Promise((resolve, reject) => {
-    axios
-      .get(url)
-      .then((res) => {
-        resolve(res);
-      })
-      .catch((err) => reject(err.message));
-  });
+async function _fetchRecipe(payload) {
+  return await axios.post("/.netlify/functions/recipe", payload);
 }
