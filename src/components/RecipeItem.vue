@@ -11,7 +11,7 @@
         @error="noImgrePlace"
       />
     </div>
-    <div class="w-3/4">
+    <div class="w-3/4 sm:w-full">
       <h2 class="text-2xl mb-4">{{ recipe.RCP_NM }}</h2>
       <span class="block text-gray-500 mb-6"> {{ recipe.RCP_PAT2 }}</span>
       <p>{{ recipe.RCP_PARTS_DTLS }}</p>
