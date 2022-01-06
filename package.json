@@ -6,7 +6,8 @@
     "dev": "netlify dev",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test:unit": "jest --watchAll"
   },
   "dependencies": {
     "@heroicons/vue": "^1.0.5",
@@ -25,11 +26,15 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
+    "@vue/test-utils": "^2.0.0-rc.18",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.4.5",
     "dotenv": "^10.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0",
-    "netlify-cli": "^8.6.0"
+    "jest": "^27.4.5",
+    "netlify-cli": "^8.6.0",
+    "vue-jest": "^5.0.0-alpha.10"
   },
   "eslintConfig": {
     "root": true,
